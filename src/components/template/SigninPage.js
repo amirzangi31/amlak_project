@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-
+import {signIn, signOut} from 'next-auth/react'
 
 
 import styles from '@/template/SignupPage.module.css'
@@ -12,12 +12,12 @@ import toast, { Toaster } from 'react-hot-toast'
 import { ThreeDots } from 'react-loader-spinner'
 
 
-function SignupPage() {
+
+function SigninPage() {
 
     const [form, setForm] = useState({
         email: "",
         password: "",
-        rePassword: "",
     })
 
     const [loading, setLoading] = useState(false)
@@ -33,43 +33,39 @@ function SignupPage() {
             [e.target.name]: e.target.value
         })
     }
-    const signupHandler = async (e) => {
+    const signinHandler = async (e) => {
         e.preventDefault()
-        if (form.password !== form.rePassword) {
-            toast.error("رمز و تکرار آن برابر نیست")
-            return
-        } else {
+        if(!form.email || !form.password){
+            toast.error("لطفا ایمیل و رمز عبور را وارد کنید")
+        }else{
             setLoading(true)
-
-            const res = await fetch("/api/auth/signup", {
-                method: "POST",
-                body: JSON.stringify(form),
-                headers: { "Content-Type": "application/json" }
+            const res  =  await signIn("credentials" , {
+                email : form.email,
+                password : form.password,
+                redirect : false
             })
-            const data = await res.json()
-            if (res.status === 201) {
-                toast.success(data.message)
-                router.push("/signin")
+            
+            if(res.error === null ){
+                router.push("/")
                 setLoading(false)
-            } else {
-                toast.error(data.error)
+            }else {
+                toast.error(res.error)
                 setLoading(false)
             }
         }
-
+        
     }
 
     return (
         <div className={styles.form}>
 
-            <h4>فرم ثبت نام</h4>
+            <h4>فرم ورود</h4>
             <form>
                 <label >ایمیل : </label>
                 <input type="text" name="email" value={form.email} onChange={changeHandler} />
                 <label >رمز عبور : </label>
                 <input type="password" name="password" value={form.password} onChange={changeHandler} />
-                <label >تکرار رمز عبور : </label>
-                <input type="password" name="rePassword" value={form.rePassword} onChange={changeHandler} />
+                
                 {
                     loading ?
                         <ThreeDots
@@ -83,14 +79,14 @@ function SignupPage() {
                             visible={true}
                         /> :
 
-                        <button type="submit" onClick={signupHandler}>ثبت نام</button>
+                        <button type="submit" onClick={signinHandler}> ورود</button>
                 }
 
             </form>
             <p>
-                حساب کاربری دارید ؟
-                <Link href={"/signin"}>
-                    ورود
+                حساب کاربری ندارید ؟
+                <Link href={"/signup"}>
+                    ثبت نام
                 </Link>
             </p>
             <Toaster />
@@ -98,4 +94,4 @@ function SignupPage() {
     )
 }
 
-export default SignupPage
+export default SigninPage
