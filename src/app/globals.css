@@ -12,6 +12,7 @@ body{
   overflow-x: hidden;
   margin: auto;
   padding: 0 10px;
+  box-sizing: border-box;
 }
 
 
@@ -23,4 +24,5 @@ a{
 
 button , input , textarea {
   font-family: inherit ;
+  background-color: transparent;
 }

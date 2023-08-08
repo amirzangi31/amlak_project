@@ -9,7 +9,8 @@ import { useRouter } from 'next/navigation'
 import styles from '@/template/SignupPage.module.css'
 
 import toast, { Toaster } from 'react-hot-toast'
-import { ThreeDots } from 'react-loader-spinner'
+
+import Loader from '../modules/Loader'
 
 
 function SignupPage() {
@@ -72,16 +73,7 @@ function SignupPage() {
                 <input type="password" name="rePassword" value={form.rePassword} onChange={changeHandler} />
                 {
                     loading ?
-                        <ThreeDots
-                            height={45}
-                            wrapperStyle={{ margin: "auto" }}
-
-                            color="#304ffe"
-                            ariaLabel="three-dots-loading"
-
-
-                            visible={true}
-                        /> :
+                    <Loader />  :
 
                         <button type="submit" onClick={signupHandler}>ثبت نام</button>
                 }
