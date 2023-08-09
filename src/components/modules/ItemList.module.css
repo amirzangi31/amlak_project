@@ -1,0 +1,17 @@
+.container ul {
+    padding-right: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .container li::marker {
+    color: #304ffe;
+  }
+
+  .text {
+    background-color: rgba(219, 5, 5, 0.159);
+    color: rgb(219, 5, 5);
+    font-size: 0.8rem;
+    padding: 5px 15px;
+    border-radius: 10px;
+    
+  }

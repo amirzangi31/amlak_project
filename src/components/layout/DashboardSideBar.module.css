@@ -21,6 +21,13 @@
     color: #304ffe;
   }
   
+  .sidebar b {
+    color: #304ffe;
+    font-weight: 700;
+  }
+
+
+
   .sidebar p {
     color: grey;
     font-size: 1rem;

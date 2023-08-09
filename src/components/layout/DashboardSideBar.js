@@ -8,7 +8,7 @@ import LogoutButton from '../modules/LogoutButton'
 
 
 
-async function DashboardSideBar({ children }) {
+async function DashboardSideBar({ children , email , role }) {
 
   const session = await getServerSession(authOptions)
 
@@ -18,11 +18,13 @@ async function DashboardSideBar({ children }) {
     <div className={styles.container}>
       <div className={styles.sidebar}>
         <CgProfile />
-        <p>{session?.user.email}</p>
+        {role === "ADMIN" && <b>ادمین</b>}
+        <p>{email}</p>
         <span></span>
         <Link href={"/dashboard"}>حساب کاربری</Link>
         <Link href={"/dashboard/my-profiles"}>آگهی های من</Link>
         <Link href={"/dashboard/add"}> ثبت آگهی</Link>
+        {role === "ADMIN" && <Link href={"/admin"}> در انتظار تایید </Link>}  
         <LogoutButton /> 
       </div>
       <div className={styles.main}>

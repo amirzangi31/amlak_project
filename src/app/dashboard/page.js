@@ -7,7 +7,7 @@ import User from '@/models/User'
 
 async function Dashboard() {
 
-await connectDB()
+    await connectDB()
     const session = await getServerSession(authOptions)
     const user = await User.findOne({email : session.user.email})
     
