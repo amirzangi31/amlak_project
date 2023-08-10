@@ -14,7 +14,11 @@ export const metadata = {
 
 
 async function Admin() {
+
+    
     await connectDB()
+
+
     const session = await getServerSession(authOptions)
 
     if (!session) redirect("/signin")

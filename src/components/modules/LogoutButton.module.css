@@ -15,3 +15,10 @@
     margin-left: 5px;
     color: rgb(219, 5, 5) !important;
   }
+
+
+  @media (max-width : 768px) {
+      .button {
+        justify-content: center;
+      }
+  }

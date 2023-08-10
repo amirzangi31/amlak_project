@@ -3,10 +3,11 @@ import Profile from '@/models/Profile'
 import connectDB from '@/utils/connectDB'
 
 async function BuyResidential({searchParams}) {
-    
 
-    await connectDB()
-    
+
+        
+        await connectDB()
+
 
     if(searchParams.category) {
         const profiles = await Profile.find({category : searchParams.category , published : true})

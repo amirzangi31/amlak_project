@@ -1,11 +1,24 @@
 .container {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
+
+  .container div {
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+
   .container p {
     display: flex;
     font-size: 1.2rem;
     font-weight: 400;
+    justify-content: center;
   }
   
   .container p svg {
@@ -17,4 +30,14 @@
   .container a {
     color: grey;
     margin: 5px;
+  }
+
+
+  @media (max-width : 768px) {
+    .container div{
+      flex-direction: row;
+    }
+    .container p {
+      justify-content: start;
+    }
   }

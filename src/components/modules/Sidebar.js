@@ -10,17 +10,20 @@ function Sidebar() {
                 <HiFilter />
                 دسته بندی
             </p>
-            <Link href={"/buy-residential"}>همه</Link>
-            {Object.keys(categories).map((i , index) => (
-                <Link
-                    key={index}
-                    href={{ 
-                        pathname: "/buy-residential",
-                        query: { category: i },
-                    }}
-                >
-                    {categories[i]}
-                </Link>))}
+
+            <div>
+                <Link href={"/buy-residential"}>همه</Link>
+                {Object.keys(categories).map((i, index) => (
+                    <Link
+                        key={index}
+                        href={{
+                            pathname: "/buy-residential",
+                            query: { category: i },
+                        }}
+                    >
+                        {categories[i]}
+                    </Link>))}
+            </div>
 
         </div>
     )

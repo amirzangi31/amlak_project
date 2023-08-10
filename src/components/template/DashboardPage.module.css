@@ -26,3 +26,14 @@
   .createdAt span {
     color: #304ffe;
   }
+
+
+
+  @media (max-width : 768px) {
+    .container {
+      margin-top: 100px;
+    }
+      .container p , .container h3 {
+        text-align: center;
+      }
+  }

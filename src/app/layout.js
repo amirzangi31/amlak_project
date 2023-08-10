@@ -5,8 +5,9 @@ import NextAuthProviders from 'src/providers/NextAuthProviders'
 
 
 export const metadata = {
-  title: 'پروژه املاک ',
+  title: 'پروژه املاک | زنگی آبادی ',
   description: 'سامانه خرید و اجاره املاک',
+  icons : {icon : "./favicon.ico"}
 }
 
 export default function RootLayout({ children }) {
