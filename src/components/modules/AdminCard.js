@@ -41,21 +41,7 @@ function AdminCard({ data }) {
     }
   }
 
-  const submitHandler = async() =>{
-    const res = await fetch("/api/together", {
-      method: "POST",
-      body: JSON.stringify({
-        name : "asmi",
-        email : "asmi",
-        subject : "asmi",
-        message : "asmi",
-      })
-    })
 
-    const data = await res.json()
-
-    console.log(data)
-  }
 
 
   return (
@@ -96,7 +82,7 @@ function AdminCard({ data }) {
           /> :
             <button type="button" onClick={deletHandler}>حذف</button>
         }
-        <button type="button" onClick={submitHandler}>test</button>
+        
       </div> 
       <Toaster />
     </div>
