@@ -9,13 +9,14 @@ import toast, { Toaster } from 'react-hot-toast'
 import { ThreeDots } from 'react-loader-spinner'
 
 function AdminCard({ data }) {
-  const [loading , setLoading ] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [loadingD, setLoadingD] = useState(false)
   const router = useRouter()
-    
+
 
   const publishHandler = async () => {
     setLoading(true)
-    const res = await fetch(`/api/profile/publish/${data._id}` , {method : "PATCH"})
+    const res = await fetch(`/api/profile/publish/${data._id}`, { method: "PATCH" })
     const result = await res.json()
     setLoading(false)
     if (result.error) {
@@ -27,6 +28,35 @@ function AdminCard({ data }) {
 
   }
 
+  const deletHandler = async () => {
+    setLoadingD(true)
+    const res = await fetch(`/api/profile/delete/${data._id}`, { method: "DELETE" })
+    const result = await res.json()
+    setLoadingD(false)
+    if (result.error) {
+      toast.error(result.error)
+    } else {
+      toast.success(result.message)
+      router.refresh()
+    }
+  }
+
+  const submitHandler = async() =>{
+    const res = await fetch("/api/together", {
+      method: "POST",
+      body: JSON.stringify({
+        name : "asmi",
+        email : "asmi",
+        subject : "asmi",
+        message : "asmi",
+      })
+    })
+
+    const data = await res.json()
+
+    console.log(data)
+  }
+
 
   return (
     <div className={styles.container}>
@@ -36,20 +66,38 @@ function AdminCard({ data }) {
         <span>{data.location}</span>
         <span>{sp(data.price)} تومان</span>
       </div>
-      {
-        loading ? <ThreeDots
-          width={40}
-          height={20}
-          wrapperStyle={{ margin: "auto" }}
+      <div className={styles.buttons}>
 
-          color="#00a800"
-          ariaLabel="three-dots-loading"
+        {
+          loading ? <ThreeDots
+            width={40}
+            height={20}
+            wrapperStyle={{ margin: "auto" }}
+
+            color="#00a800"
+            ariaLabel="three-dots-loading"
 
 
-          visible={true}
-        /> :
-          <button type="button" onClick={publishHandler}>انتشار</button>
-      }
+            visible={true}
+          /> :
+            <button type="button" onClick={publishHandler}>انتشار</button>
+        }
+        {
+          loadingD ? <ThreeDots
+            width={40}
+            height={20}
+            wrapperStyle={{ margin: "auto" }}
+
+            color="#db0505"
+            ariaLabel="three-dots-loading"
+
+
+            visible={true}
+          /> :
+            <button type="button" onClick={deletHandler}>حذف</button>
+        }
+        <button type="button" onClick={submitHandler}>test</button>
+      </div> 
       <Toaster />
     </div>
   )

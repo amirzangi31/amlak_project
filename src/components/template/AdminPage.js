@@ -10,7 +10,7 @@ function AdminPage({profiles}) {
         {profiles.length === 0 && <p className={styles.text}>هیچ آگهی درحال انتظار تاییدی وجود ندارد  </p>}
         {
             profiles.map((item , index) => (
-                    <AdminCard  key={item._id} data={item} /> 
+                    <AdminCard  key={item._id} data={JSON.parse(JSON.stringify(item))} /> 
             ))
         }
 

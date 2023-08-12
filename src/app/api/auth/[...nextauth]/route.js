@@ -8,7 +8,9 @@ import connectDB from '@/utils/connectDB'
 import NextAuth from 'next-auth'
 
 export const authOptions = {
+    
     sessioin: { strategy: "jwt" },
+    
     providers: [CredentialsProvider({
         async authorize(credentials) {
             const { email, password } = credentials

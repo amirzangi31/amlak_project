@@ -45,3 +45,16 @@
   .container button:hover {
     color: #000;
   }
+
+
+
+  .container .buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .container .buttons button:nth-child(2){
+    background-color: rgb(219, 5, 5);
+  }

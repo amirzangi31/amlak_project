@@ -19,11 +19,12 @@ function DashboardCard({ data }) {
 
     const router = useRouter()
 
-
+    //edit profile hanlder
     const editHandler = () => {
         router.push(`/dashboard/my-profiles/${data._id}`)
 
     }
+    //delete profile hanlder
     const deleteHandler = async () => {
         setLoading(true)
         const res = await fetch(`/api/profile/delete/${data._id}`, { method: "DELETE" })
